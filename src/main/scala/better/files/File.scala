@@ -1156,8 +1156,8 @@ class File private (val path: Path)(implicit val fileSystem: FileSystem = path.g
       output <- newZipOutputStream(File.OpenOptions.default, charset).withCompressionLevel(compressionLevel).autoClosed
       input  <- files
       file   <- input.walk() if !name.contentEquals(file.name) // See https://github.com/pathikrit/better-files/pull/436
-      name = input.parent.relativize(file)
-    } output.add(file, name.toString)
+      pathInZip = input.parent.relativize(file)
+    } output.add(file, pathInZip.toString)
     this
   }
 
