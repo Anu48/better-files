@@ -478,7 +478,7 @@ class FileSpec extends CommonSpec {
   }
 
   it should "zip/unzip directories" in {
-    assume(Properties.javaVersion.startsWith("1.8") || Properties.javaVersion.toInt >= 10)
+    assume(Properties.javaVersion.startsWith("1.8") || Properties.javaVersion.split("\\.")(0).toInt >= 10)
     t1.writeText("hello world")
     val zipFile = testRoot.zip()
     zipFile.size() should be > 100L
@@ -497,7 +497,7 @@ class FileSpec extends CommonSpec {
   }
 
   it should "zip/unzip single files" in {
-    assume(Properties.javaVersion.startsWith("1.8") || Properties.javaVersion.toInt >= 10)
+    assume(Properties.javaVersion.startsWith("1.8") || Properties.javaVersion.split("\\.")(0).toInt >= 10)
     t1.writeText("hello world")
     val zipFile = t1.zip()
     zipFile.size() should be > 100L
